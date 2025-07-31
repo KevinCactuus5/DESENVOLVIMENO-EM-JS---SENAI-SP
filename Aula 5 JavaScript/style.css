@@ -1,0 +1,23 @@
+:root{
+    --cor-texto: black;
+    --cor-primaria:rgb(207, 255, 168);
+    --cor-secundaria: rgb(245, 0, 245);
+}
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    color var(--cor-texto);
+    padding: var(--espacamento);
+    margin: 0;
+    background-color: var(--fundo) ;
+}
+.botao-primario{
+    background-color: var(--cor-primaria);
+    color: var(--cor-primaria);
+}
+.botao-secundario{
+    --cor-button: rgb(174, 255, 137);
+    --fundo-btn: orange;
+    color: var(var(--cor-button));
+    border-radius: var(--borda);
+    padding: var(--espacamento);
+}

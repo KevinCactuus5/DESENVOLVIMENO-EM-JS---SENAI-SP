@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past</title>
+    <script src="Script.js"></script>
+</head>
+<body>
+    <h1>método basico de saidas com o JS </h1>
+    <!--vai interagir com o ambiente de teste-->
+    <button onclick="console.log('mensagem no console')">console.log</button>
+    <!--interagir com caixas de alerta da pagina-->
+    <button onclick="alert('alerta')">alerta</button>
+    <!--vai interagir com o corpo da pagina-->
+    <button onclick="document.write(<h2>Documento Subscrito</h2>)">document.write</button>
+    <!--vai interagir com o corpo da pagina-->
+    <button onclick="document.getElementById('demo').innerHTML='texto alterado'">innerHTML</button>
+
+<p id="demo"> texto de teste</p>
+</body>
+<script>
+    console.log('pagina carregada')
+    document.write('<p> ADICIONAR DURANTE O CARREGAMENTO</p>')
+</script>
+</html>

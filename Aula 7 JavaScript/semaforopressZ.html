@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>semaforoclickZ</title>
+  <style>
+   body{
+    display: flex;
+    background-color: whitesmoke;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    margin: 0;
+   }
+.semaforo{
+    width: 100px;
+    background: #333;
+    padding: 30px;
+    border-radius: 10px;
+}
+.luz{
+    width: 80px;
+    height: 80px;
+    background: #333;
+    padding: 30px;
+    border-radius: 50%;
+}
+
+  </style>
+
+</head>
+<body>
+    
+    <div class="semaforoclickZ"
+    onclick="
+    if (document.getElementById('vermelho').style.background == 'red'){
+        document.getElementById('vermelho').style.background = '#444'
+        document.getElementById('amarelo').style.background = 'yellow'
+
+    }else if(document.getElementById('amarelo').style.background == 'yellow'){
+        document.getElementById('amarelo').style.background = '#444'
+        document.getElementById('verde').style.background = 'green'
+    }else{
+        document.getElementById('verde').style.background = '#444'
+        document.getElementById('vermelho').style.background = 'red'
+    }
+    ">
+    </div>
+    <div id="vermelho" class="luz"> </div>
+    <div id="amarelo" class="luz"> </div>
+    <div id="verde" class="luz"> </div>
+    <script>
+        function mudarLuz() {
+      const vermelho = document.getElementById('vermelho');
+      const amarelo = document.getElementById('amarelo');
+      const verde = document.getElementById('verde');
+
+      if (vermelho.style.background === 'red') {
+        vermelho.style.background = '#444';
+        amarelo.style.background = 'yellow';
+        document.body.style.background = '#FFD700'; ; //amarelo
+
+      } else if (amarelo.style.background === 'yellow') {
+        amarelo.style.background = '#444';
+        verde.style.background = 'green';
+        document.body.style.background = '#4CAF50'; //verde
+      } else {
+        verde.style.background = '#444';
+        vermelho.style.background = 'red';
+        document.body.style.background = '#C62828'; //vermelho
+      }
+    }
+
+    document.addEventListener("keyup", function(event) {
+      if (event.key === "z" || event.key === "Z") {
+        mudarLuz();
+      }
+    });
+    document.getElementById("vermelho").style.background = "red";
+      </script>
+</body>
+</html>

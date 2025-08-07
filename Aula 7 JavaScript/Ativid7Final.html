@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Números</title>
+</head>
+<body>
+<center>
+    <h2>Verificador de Números</h2>
+    <button onclick="verificarNumero()">Verificar Número</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarNumero() {
+            // Solicita ao usuário que insira um número
+            let numero = prompt("Digite um número:");
+
+            // Converte o valor para um número (em caso de entrada como string)
+            numero = parseFloat(numero);
+
+            // Verifica se o valor inserido é um número válido
+            if (isNaN(numero)) {
+                document.getElementById("resultado").innerHTML = "Por favor, insira um número válido!";
+            } else {
+                // Verifica se o número é positivo, negativo ou zero
+                if (numero > 0) {
+                    document.getElementById("resultado").innerHTML = "O número é positivo.";
+                } else if (numero < 0) {
+                    document.getElementById("resultado").innerHTML = "O número é negativo.";
+                } else {
+                    document.getElementById("resultado").innerHTML = "O número é zero.";
+                }
+            }
+        }
+    </script>
+
+<h2>Classificador de Triângulos</h2>
+<button onclick="classificarTriangulo()">Classificar Triângulo</button>
+
+<p id="resultado"></p>
+
+<script>
+    function classificarTriangulo() {
+        // Solicita ao usuário os 3 lados do triângulo
+        let lado1 = parseFloat(prompt("Digite o comprimento do primeiro lado:"));
+        let lado2 = parseFloat(prompt("Digite o comprimento do segundo lado:"));
+        let lado3 = parseFloat(prompt("Digite o comprimento do terceiro lado:"));
+
+        // Verifica se os lados formam um triângulo válido
+        if (lado1 <= 0 || lado2 <= 0 || lado3 <= 0) {
+            document.getElementById("resultado").innerHTML = "Os lados devem ser maiores que zero!";
+            return;
+        }
+
+        // Verifica a validade do triângulo usando a regra de desigualdade triangular
+        if (!(lado1 + lado2 > lado3 && lado1 + lado3 > lado2 && lado2 + lado3 > lado1)) {
+            document.getElementById("resultado").innerHTML = "Esses lados não formam um triângulo válido!";
+            return;
+        }
+
+        // Classificação do triângulo
+        if (lado1 === lado2 && lado2 === lado3) {
+            document.getElementById("resultado").innerHTML = "O triângulo é Equilátero (todos os lados iguais).";
+        } else if (lado1 === lado2 || lado2 === lado3 || lado1 === lado3) {
+            document.getElementById("resultado").innerHTML = "O triângulo é Isósceles (dois lados iguais).";
+        } else {
+            document.getElementById("resultado").innerHTML = "O triângulo é Escaleno (todos os lados diferentes).";
+        }
+    }
+</script>
+
+<h2>Verificador de Múltiplos de 5 e 7</h2>
+<button onclick="verificarMultiplos()">Verificar Número</button>
+
+<p id="resultado"></p>
+
+<script>
+    function verificarMultiplos() {
+        // Solicita ao usuário que insira um número
+        let numero = prompt("Digite um número:");
+
+        // Converte o valor para um número inteiro
+        numero = parseInt(numero);
+
+        // Verifica se a entrada é um número válido
+        if (isNaN(numero)) {
+            document.getElementById("resultado").innerHTML = "Por favor, insira um número válido!";
+            return;
+        }
+
+        // Verifica se o número é múltiplo de 5 e 7 simultaneamente
+        if (numero % 5 === 0 && numero % 7 === 0) {
+            document.getElementById("resultado").innerHTML = "O número " + numero + " é múltiplo de 5 e 7.";
+        } else {
+            document.getElementById("resultado").innerHTML = "O número " + numero + " não é múltiplo de 5 e 7 simultaneamente.";
+        }
+    }
+</script>
+
+<h2>Verificador de Par ou Ímpar</h2>
+    <button onclick="verificarParOuImpar()">Verificar Número</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarParOuImpar() {
+            // Solicita ao usuário que insira um número
+            let numero = prompt("Digite um número:");
+
+            // Converte o valor para um número
+            numero = parseInt(numero);
+
+            // Verifica se a entrada é um número válido
+            if (isNaN(numero)) {
+                document.getElementById("resultado").innerHTML = "Por favor, insira um número válido!";
+                return;
+            }
+
+            // Verifica se o número é par ou ímpar
+            if (numero % 2 === 0) {
+                document.getElementById("resultado").innerHTML = "O número " + numero + " é Par.";
+            } else {
+                document.getElementById("resultado").innerHTML = "O número " + numero + " é Ímpar.";
+            }
+        }
+    </script>
+    
+    <h2>Verificador de Divisibilidade por 9 ou 6</h2>
+
+    <label for="numero">Digite um número:</label>
+    <input type="number" id="numero" placeholder="Digite o número">
+    <button onclick="verificarDivisibilidade()">Verificar</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarDivisibilidade() {
+            // Captura o número digitado pelo usuário
+            const numero = parseInt(document.getElementById('numero').value);
+
+            // Aqui verifica se o número é divisível por 9 ou 6
+            if (numero % 9 === 0 || numero % 6 === 0) {
+                document.getElementById('resultado').innerHTML = `O número ${numero} é divisível por 9 ou 6.`;
+            } else {
+                document.getElementById('resultado').innerHTML = `O número ${numero} não é divisível por 9 nem por 6.`;
+            }
+        }
+    </script>
+
+<h2>Verificador de Votação</h2>
+
+<label>Digite sua idade:</label>
+<input type="number" id="idade">
+<button onclick="verificarVoto()">Verificar</button>
+
+<p id="resultado"></p>
+
+<script>
+  function verificarVoto() {
+    var idade = Number(document.getElementById("idade").value);
+    var mensagem = "";
+
+    if (idade < 16) {
+      mensagem = "Eita, Você ainda não pode votar.";
+    } else if ((idade >= 16 && idade < 18) || idade >= 70) {
+      mensagem = "Boa, Votar é opcional para você.";
+    } else {
+      mensagem = " Votar é obrigatório para você.";
+    }
+
+    document.getElementById("resultado").innerText = mensagem;
+  }
+</script>
+
+</center>
+</body>
+</html>

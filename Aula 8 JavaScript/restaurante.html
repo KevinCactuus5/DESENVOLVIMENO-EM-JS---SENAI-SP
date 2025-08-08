@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reservas</title>
+
+</head>
+<body>
+    <center>
+  <h1>Reservas do Restaurante</h1>
+
+  <h3>Cliente 1</h3>
+  Nome: <input type="text" id="nome1"><br>
+  Número de pessoas: <input type="number" id="pessoas1"><br>
+  Tipo de mesa:
+  <select id="mesa1">
+    <option value="Padrão">Padrão</option>
+    <option value="VIP">VIP</option>
+    <option value="Varanda">Varanda</option>
+  </select>
+  <br><br>
+
+  <h3>Cliente 2</h3>
+  Nome: <input type="text" id="nome2"><br>
+  Número de pessoas: <input type="number" id="pessoas2"><br>
+  Tipo de mesa:
+  <select id="mesa2">
+    <option value="Padrão">Padrão</option>
+    <option value="VIP">VIP</option>
+    <option value="Varanda">Varanda</option>
+  </select>
+  <br><br>
+
+  <h3>Cliente 3</h3>
+  Nome: <input type="text" id="nome3"><br>
+  Número de pessoas: <input type="number" id="pessoas3"><br>
+  Tipo de mesa:
+  <select id="mesa3">
+    <option value="Padrão">Padrão</option>
+    <option value="VIP">VIP</option>
+    <option value="Varanda">Varanda</option>
+  </select>
+  <br><br>
+
+  <button onclick="
+    // Captura dos dados
+    var nome1 = document.getElementById('nome1').value;
+    var pessoas1 = parseInt(document.getElementById('pessoas1').value);
+    var mesa1 = document.getElementById('mesa1').value;
+
+    var nome2 = document.getElementById('nome2').value;
+    var pessoas2 = parseInt(document.getElementById('pessoas2').value);
+    var mesa2 = document.getElementById('mesa2').value;
+
+    var nome3 = document.getElementById('nome3').value;
+    var pessoas3 = parseInt(document.getElementById('pessoas3').value);
+    var mesa3 = document.getElementById('mesa3').value;
+
+    // Consumo mínimo por pessoa
+    var consumo1 = 0;
+    if (mesa1 == 'Padrão') {
+      consumo1 = 50;
+    } else if (mesa1 == 'VIP') {
+      consumo1 = 80;
+    } else if (mesa1 == 'Varanda') {
+      consumo1 = 100;
+    }
+
+    var consumo2 = 0;
+    if (mesa2 == 'Padrão') {
+      consumo2 = 50;
+    } else if (mesa2 == 'VIP') {
+      consumo2 = 80;
+    } else if (mesa2 == 'Varanda') {
+      consumo2 = 100;
+    }
+
+    var consumo3 = 0;
+    if (mesa3 == 'Padrão') {
+      consumo3 = 50;
+    } else if (mesa3 == 'VIP') {
+      consumo3 = 80;
+    } else if (mesa3 == 'Varanda') {
+      consumo3 = 100;
+    }
+  
+    // Totais por cliente
+    var total1 = consumo1 * pessoas1;
+    var total2 = consumo2 * pessoas2;
+    var total3 = consumo3 * pessoas3;
+
+    var totalRestaurante = total1 + total2 + total3;
+
+    // Exibição dos resultados
+    document.getElementById('resultado').innerHTML =
+      'Cliente: ' + nome1 + ' - Total: R$ ' + total1 + '<br>' +
+      'Cliente: ' + nome2 + ' - Total: R$ ' + total2 + '<br>' +
+      'Cliente: ' + nome3 + ' - Total: R$ ' + total3 + '<br><br>' +
+      '<strong>Consumo mínimo total do restaurante: R$ ' + totalRestaurante + '</strong>';
+  ">Calcular Reservas</button>
+ <style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #a19f9f;
+  } h1{
+    color: white;
+  } h3{
+    color: rgb(255, 255, 255);
+    border: 1px solid;
+  }
+  
+ </style>
+  <hr>
+  <div id="resultado"></div>
+  </center>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--// //1 
+
+
+// let n1 =  parseInt(prompt('numero: '))
+
+
+// if (n1<0){
+//     console.log('Negativo')
+// }
+// else if(n1 > 0){
+//     console.log('Positivo')
+// }else{
+//     console.log('Zero')
+// }
+
+
+// let idade =  parseInt(prompt('idade: '))
+
+
+// if(idade >= 16){
+//     console.log('Autorizado a votar!')
+// }else{
+
+
+//     console.log('Não Autorizado a votar!')
+// }
+
+
+
+
+// let numero =  parseInt(prompt('numero: '))
+
+
+// if(numero % 2 == 0){
+//     console.log('Par')
+// }else{
+//     console.log('Impar')
+// }
+
+
+
+
+// let l1 =  parseInt(prompt('lado 1: '))
+// let l2 =  parseInt(prompt('lado 2: '))
+// let l3 =  parseInt(prompt('lado 3: '))
+
+
+// if (l1 == l2 && l2 == l3 && l3 == l1){
+//     console.log('Equilatero')
+// }else if(l1 != l2 && l2 != l3 && l3 != l1){
+//     console.log('Isosceles')
+// }else{
+//     console.log('Escaleno')
+// }
+
+
+// n1  =  parseFloat(prompt('Digite um número: '))
+
+
+// if (8  % n1  == 0  && 16 %  n1 ==0 ){
+  
+//     console.log('É')
+
+
+// }else{
+//     console.log('Não é')
+// }
+
+
+
+// n1  =  parseFloat(prompt('Digite um número: '))
+
+
+// if ( n1 > 0 && n1 > 15 ){
+  
+//     console.log('É')
+
+
+// }else{
+//     console.log('Não é')
+// }
+
+
+
+
+
+// n1  =  parseFloat(prompt('Digite um número: '))
+
+
+// if ( n1 % 9 == 0 && n1 % 6==0 ){
+  
+//     console.log('ambos são')
+
+
+// }else  if(n1 % 9 == 0 || n1 % 6==0){
+//     console.log('um é')
+// }else{
+//     console.log('Nenhum é ')
+//
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Compras Interativa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #1097f1;
+    }
+    .resultado {
+      background-color: #fff;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    input{
+      padding: 5px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 6px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .opcoes {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Compras Interativa</h1>
+
+  <div>
+    <h2>Escolha uma ação:</h2>
+    <div class="opcoes">
+      <button onclick="adicionarItem()">Adicionar Item</button>
+      <button onclick="removerItem()">Remover Item</button>
+      <button onclick="listarItens()">Listar Itens</button>
+      <button onclick="sair()">Sair</button>
+    </div>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script>
+    let listaCompras = []; // Array para armazenar os itens
+
+    // Função para adicionar um item
+    function adicionarItem() {
+      const item = prompt("Digite o item que você deseja adicionar à lista:");
+      if (item) {
+        listaCompras.push(item);
+        atualizarResultado("Item '" + item + "' adicionado com sucesso!");
+      } else {
+        atualizarResultado("Item não pode ser vazio.");
+      }
+    }
+
+    // Função para remover um item
+    function removerItem() {
+      const item = prompt("Digite o item que você deseja remover:");
+      const index = listaCompras.indexOf(item);
+      if (index !== -1) {
+        listaCompras.splice(index, 1); // Remove o item do array
+        atualizarResultado("Item '" + item + "' removido com sucesso!");
+      } else {
+        atualizarResultado("Item não encontrado na lista.");
+      }
+    }
+
+    // Função para listar os itens
+    function listarItens() {
+      if (listaCompras.length === 0) {
+        atualizarResultado("A lista de compras está vazia.");
+      } else {
+        let lista = "Lista de Compras:\n";
+        for (let i = 0; i < listaCompras.length; i++) {
+          lista += (i + 1) + ". " + listaCompras[i] + "\n";
+        }
+        atualizarResultado(lista);
+      }
+    }
+
+    // Função para mostrar o resultado na tela
+    function atualizarResultado(mensagem) {
+      const resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerText = mensagem;
+    }
+
+    // Função para sair do programa
+    function sair() {
+      const confirmar = confirm("Você tem certeza que deseja sair?");
+      if (confirmar) {
+        atualizarResultado("Saindo do programa...");
+        setTimeout(function() {
+          window.close(); // Fechar a janela (funciona em alguns navegadores)
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+<!--- https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Loops_and_iteration
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array --->

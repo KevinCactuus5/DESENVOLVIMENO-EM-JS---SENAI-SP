@@ -1,0 +1,48 @@
+// Classe pai
+class Animal {
+  falar() {
+    console.log("O animal fez um som.");
+  }
+}
+
+// Classe filha que herda de Animal
+class Cachorro extends Animal {
+  falar() {
+    console.log("O cachorro latiu.");
+  }
+}
+
+const dog = new Cachorro();
+dog.falar(); // O cachorro latiu.
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Herança em JavaScript</title>
+</head>
+<body>
+  <h1>Exemplo de Herança em JavaScript</h1>
+  <button onclick="testarHeranca()">Clique para ver o resultado</button>
+
+  <script>
+    class Animal {
+      falar() {
+        console.log("O animal fez um som.");
+        alert("O animal fez um som.");
+      }
+    }
+
+    class Cachorro extends Animal {
+      falar() {
+        console.log("O cachorro latiu.");
+        alert("O cachorro latiu.");
+      }
+    }
+
+    function testarHeranca() {
+      const dog = new Cachorro();
+      dog.falar();
+    }
+  </script>
+</body>
+</html>

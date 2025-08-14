@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão =)</title>
+    <style>
+        body{
+            background-color: #a39d9d;
+        }
+        button{
+            font-size: medium;
+           padding:1000px 1000px;
+        }
+        
+    </style>
+</head>
+<body>
+    <center>
+    <div>
+    <h1>O Botão</h1>
+    <Div class="opcoes">
+        <button onclick="sair()">entrar</button>
+    </Div>
+    <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        function atualizarResultado(mensagem){
+            const resultadodiv = document.getElementById("resultado")
+            resultadodiv.innerText = "mensagem"
+        }
+        function sair(){
+            const confirmar = confirm("Você tem certeza que deseja entrar?");
+            if (confirmar){
+                atualizarResultado("saindo do programa");
+                setTimeout(function(){
+                    window.close();
+                }, 1000);
+            }
+        }
+    </script>
+    </center>
+</body>
+</html>

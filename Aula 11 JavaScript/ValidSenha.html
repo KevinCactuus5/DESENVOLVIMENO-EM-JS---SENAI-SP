@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Senha</title>
+    <style>
+        .valid { color: green; }
+        .invalid { color: red; }
+    </style>
+</head>
+<body>
+
+    <h1>Validador de Senha</h1>
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" placeholder="Digite sua senha">
+    <button onclick="validar()">Validar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function validar() {
+            const senha = document.getElementById("senha").value;
+            const resultado = document.getElementById("resultado");
+
+            // Verificando os critérios
+            if (senha.length >= 8 && /\d/.test(senha) && /[A-Z]/.test(senha)) {
+                resultado.textContent = "Senha válida!";
+                resultado.className = "valid";
+            } else {
+                resultado.textContent = "Senha inválida! Deve conter 8 caracteres, um número e uma maiúscula.";
+                resultado.className = "invalid";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+<!---  Explicação mais detalhada sobre
+Variáveis globais para o critério da senha
+const MIN_TAMANHO = 8;
+let TEM_NUMERO = false;
+let TEM_MAIUSCULA = false;
+
+function validarSenha(senha) {
+    // Resetando as variáveis a cada nova verificação
+    TEM_NUMERO = false;
+    TEM_MAIUSCULA = false;
+    
+    // Verificando o tamanho da senha
+    if (senha.length < MIN_TAMANHO) {
+        return false;  // Senha muito curta
+    }
+    
+    // Verificando se a senha contém números e letras maiúsculas
+    for (let i = 0; i < senha.length; i++) {
+        let char = senha[i];
+        
+        if (/\d/.test(char)) {
+            TEM_NUMERO = true;  // Encontrou um número
+        }
+        
+        if (/[A-Z]/.test(char)) {
+            TEM_MAIUSCULA = true;  // Encontrou uma letra maiúscula
+        }
+    }
+    
+    // A senha é válida se contiver pelo menos um número e uma letra maiúscula
+    if (TEM_NUMERO && TEM_MAIUSCULA) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Testando a função
+const senhaTeste = "Senha123";
+if (validarSenha(senhaTeste)) {
+    console.log(`A senha '${senhaTeste}' é válida.`);
+} else {
+    console.log(`A senha '${senhaTeste}' é inválida.`);
+}                 
+    tentativa: // Variáveis globais para os critérios de senha
+const MIN_TAMANHO = 8;
+let TEM_NUMERO = false;
+let TEM_MAIUSCULA = false;
+
+// Função para validar a senha
+function validarSenha(senha) {
+    // Resetando as variáveis de controle
+    TEM_NUMERO = false;
+    TEM_MAIUSCULA = false;
+
+    // Verificando o tamanho da senha
+    if (senha.length < MIN_TAMANHO) {
+        return false;  // Senha muito curta
+    }
+
+    // Verificando caracteres específicos (números e letras maiúsculas)
+    for (let i = 0; i < senha.length; i++) {
+        let char = senha[i];
+        
+        // Verifica se o caractere é um número
+        if (/\d/.test(char)) {
+            TEM_NUMERO = true;
+        }
+        
+        // Verifica se o caractere é uma letra maiúscula
+        if (/[A-Z]/.test(char)) {
+            TEM_MAIUSCULA = true;
+        }
+    }
+
+    // A senha é válida se tiver pelo menos um número e uma letra maiúscula
+    if (TEM_NUMERO && TEM_MAIUSCULA) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Função para testar múltiplas senhas
+function testarSenhas() {
+    const senhasParaTestar = [
+        "Senha123",   // Válida
+        "senha123",   // Inválida (sem maiúscula)
+        "12345678",   // Inválida (sem maiúscula)
+        "Senha",      // Inválida (muito curta)
+        "Senha!@#",   // Inválida (sem número)
+        "Senh@123",   // Válida
+    ];
+
+    senhasParaTestar.forEach(senha => {
+        if (validarSenha(senha)) {
+            console.log(`A senha '${senha}' é válida.`);
+        } else {
+            console.log(`A senha '${senha}' é inválida.`);
+        }
+    });
+}
+
+// Chamando a função de teste para validar várias senhas
+testarSenhas();
+---->

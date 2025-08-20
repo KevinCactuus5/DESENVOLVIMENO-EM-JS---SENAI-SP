@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+</head>
+<body>
+
+<script>
+  // Função calculadora que recebe dois números e uma operação
+  function calculadora(num1, num2, operacao) {
+    if (operacao === 'soma') {
+      return num1 + num2;
+    } else if (operacao === 'sub') {
+      return num1 - num2;
+    } else if (operacao === 'multi') {
+      return num1 * num2;
+    } else if (operacao === 'divi') {
+      if (num2 === 0) {
+        return 'Erro: divisão por zero!';
+      }
+      return num1 / num2;
+    } else {
+      return 'Operação inválida!';
+    }
+  }
+
+  // Exemplo de uso com prompt
+  let op = prompt("Escolha a operação: soma, sub, multi, divi");
+  let n1 = parseFloat(prompt("Digite o primeiro número:"));
+  let n2 = parseFloat(prompt("Digite o segundo número:"));
+  let resultado = calculadora(n1, n2, op);
+  alert("Resultado: " + resultado);
+</script>
+
+</body>
+</html>

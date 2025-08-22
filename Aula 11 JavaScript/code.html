@@ -1,0 +1,252 @@
+<!DOCTYPE>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sistema de cad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .secao_1 {
+            max-width: 800px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .cabecalho {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+        .card_form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .btn_principio {
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+        .btn_principio:hover {
+            background-color: #5643c4;
+            border-color: #5643c4;
+        }
+        .btn-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .table th {
+           background-color: #6c5ce7;
+            color: white;
+        }
+        .cpf-input {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="secao_1">
+        <div class="cabecalho">
+            <h2>Cadastro de Pessoas</h2>
+            <p class="text-muted">Sistema simples com Programação Orientada a Objetos</p>
+        </div>
+
+        <div class="card_form">
+            <form id="formCadastro">
+                <input type="hidden" id="editId" value="">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control cpf-input" id="cpf" required maxlength="14">
+                    </div>
+                    <div class="col-md-4 mb-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn_principio w-100" id="btnSubmit">Salvar</button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="btn-actions">
+                <button type="button" class="btn btn-warning" id="btnAlterar" disabled>Alterar</button>
+                <button type="button" class="btn btn-info" id="btnAtualizar">Atualizar Lista</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelar" style="display: none;">Cancelar</button>
+            </div>
+        </div>
+
+        <h4 class="mb-3">Registros</h4>
+        <div class="table-responsive">
+            <table class="table table-striped  table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaDados">
+                    <!-- Dados serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+<script>
+
+class Pessoa{
+    constructor(id, nome, cpf){
+    this.id =  id;
+    this.nome = nome;
+    this.cpf = cpf    
+    }
+}
+
+//Gerenciar Pessoas 
+
+class GerenciadorPessoas{
+
+     constructor(){
+        this.pessoas  =  this.carregarDados();
+     }
+
+     carregarDados(){
+        const dados = localStorage.setItem('pessoas');
+        return dados ? JSON.parse(dados) : []
+     }
+
+     salvarDados(){
+        localStorage.setItem('pessoas', JSON.stringify(this.pessoas));
+     }
+
+     adicionarPessoas(nome, cpf){
+        const id =  this.pessoas.length > 0 ? Math.max(...this.pessoas.map(p=>p.id)) + 1  : 1
+        const novaPessoa = new Pessoa(id, nome, cpf)
+        this.pessoas.push(novaPessoa)
+        this.salvarDados()
+        return novaPessoa
+     }
+
+     atualizarPessoa(id, nome, cpf){
+        const index = this.pessoas.findIndex(p=>p.id !== id);
+        if (index !== -1){
+          this.pessoas[index] = new Pessoa(id, nome, cpf);
+          this.salvarDados()
+           return true
+        }else{
+            return false
+        }
+
+     }
+
+     removerPessoa(id){
+
+        this.pessoas = this.pessoas.filter(p=>p.id === id)
+        this.salvarDados()
+
+     }
+     obterPessoaPorId(id){
+        return this.pessoas = this.pessoas.filter(p=>p.id === id)
+     }
+
+
+}
+
+class Interface{
+     constructor(gerenciador){
+     this.gerenciador = gerenciador;
+     this.editId = null;
+     this.init()
+     } 
+
+     init(){
+        this.configurarEventos();
+        this.mostrarDados()
+     }
+
+     configurarEventos(){
+       document.getElementById('formCadastro').addEventListener('submit', (e) => {
+        e.preventDefault()
+        this.salvarPessoa()
+       })
+
+      document.getElementById('btnAlterar').addEventListener('click', () =>{
+        this.prepararEdicao();
+
+        }) 
+
+      document.getElementById('btnAtualizar').addEventListener('click', () =>{
+      this.mostrarDados();
+
+      })
+        
+     document.getElementById('btnCancelar').addEventListener('click', ()=>{
+        this.cancelarEdicao();
+     })
+
+     doument.getElementById('cpf').addEventListener('input', (e) =>{
+        e.target.value = this.formatarCPF(e.target.value)
+     })
+       
+     }
+
+    formatarCPF(){
+        cpf  =  cpf.replace(/\D/g, '');
+        if (cpf.length>9){
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'  )
+        }else if(cpf.length>6){
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3'  )
+        }else if (cpf.length>3)
+              return cpf.replace(/(\d{3})(\d{3})/, '$1.$2'  )
+    }
+
+
+}
+//1 - Instalar o git -         link de instalação       winget install -e --id Git.Git
+
+//2 - ter conta no gihub
+
+//3 -  criar um repositorio
+
+//4 -  verificar se o git esta instalado na maquina git —version ou git —help
+
+//5 - criar uma pasta no pc colocar o projeto
+
+//6 - clique com o botão direito na pasta escolha git bash 
+
+//7 - git init
+
+//8 - git status
+
+//9 - git add . - manda para área de preparação
+
+//10 - git status
+
+//11 - git commit -m “nome_alteração”
+
+//12 - vai pedir para configurar o acesso email e usuario
+
+//13 - git commit
+
+//14 - git remote add origin “LINK DO REPOSITÓRIO”
+
+//15 - git push  —set -uptream origin
+
+//16 - autorizar na interface do git 
+
+//esta na branch master
+
+
+
+
+</script>    
